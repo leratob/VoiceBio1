@@ -1,0 +1,16 @@
+buildAll                 -- builds all the sample apps.
+clean                    -- cleans up generated classes of all samples.
+buildAcdSampleApp        -- builds the ACD sample app.
+runAcdSampleApp          -- runs the ACD sample app.
+buildAutoAnswerSampleApp -- builds the AutoAnswer sample app.
+runAutoAnswerSampleApp   -- runs the AutoAnswer sample app.
+buildCallLogSampleApp    -- builds the CallLog sample app.
+runCallLogSampleApp      -- runs the CallLog sample app.
+buildRouteSampleApp      -- builds the Route sample app.
+runRouteSampleApp        -- runs the Route sample app.
+buildTsTestSampleApp     -- builds the TsTest sample app.
+distTsTestWebApp         -- creates a war for TsTest sample app
+runTsTestSampleApp       -- runs the TsTest sample app.
+buildClick2CallSampleApp        -- builds the Click2Call sample app.
+runClick2CallSampleApp          -- runs the Click2Call sample app.
+help                     -- Prints this information message.

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<project name="SDK" basedir=".." default="buildAll">
+
+	<property name="build.dir" value="build" />
+	<property name="jtapi.client.jar" value="ecsjtapia.jar" />
+	<property name="log4j.jar" value="log4j-1.2.12.jar" />
+	<property name="servlet-api.jar" value="servlet-api-2.5-6.1.1.jar" />
+
+	<path id="apps.compile.classpath">
+		<fileset dir="../lib">
+			<include name="${jtapi.client.jar}" />
+			<include name="${log4j.jar}" />
+			<include name="${servlet-api.jar}" />
+		</fileset>
+		<pathelement location="${build.dir}" />
+	</path>
+	<path id="apps.run.classpath">
+		<fileset dir="../lib">
+			<include name="${jtapi.client.jar}" />
+			<include name="${log4j.jar}" />
+		</fileset>
+		<pathelement location="${build.dir}" />
+		<pathelement location="../conf" />
+		<pathelement location="../resources"/>
+	</path>
+
+	<target name="buildAll" description="builds all the sample apps" 
+		depends="buildAcdSampleApp,buildAutoAnswerSampleApp,buildCallLogSampleApp
+		,buildRouteSampleApp,buildTsTestSampleApp,distTsTestWebApp">
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${build.dir}" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="apps.compile.classpath" />
+	</target>
+
+	<target name="run">
+		<java classpathref="apps.run.classpath" classname="${entrypoint}" fork="true">
+			</java>
+	</target>
+
+	<target name="clean" description="cleans up the base">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<!-- target for building ACD Sample App-->
+	<target name="buildAcdSampleApp" description="builds the ACD sample app">
+		<antcall target="compile">
+			<param name="src.dir" value="acdSrc" />
+		</antcall>
+	</target>
+
+	<!-- target for running ACD Sample Apps-->
+	<target name="runAcdSampleApp" depends="buildAcdSampleApp" description="runs the ACD sample app">
+		<antcall target="run">
+			<param name="entrypoint" value="acd.ui.ACDFrame" />
+		</antcall>
+	</target>
+
+	<!-- target for building AutoAnswer Sample App-->
+	<target name="buildAutoAnswerSampleApp" description="builds the AutoAnswer sample app">
+		<antcall target="compile">
+			<param name="src.dir" value="autoanswerSrc" />
+		</antcall>
+	</target>
+
+	<!-- target for running AutoAnswer Sample Apps-->
+	<target name="runAutoAnswerSampleApp" depends="buildAutoAnswerSampleApp" description="runs the AutoAnswer sample app">
+		<antcall target="run">
+			<param name="entrypoint" value="autoanswer.ui.AutoAnswerFrame" />
+		</antcall>
+	</target>
+
+	<!-- target for building Call Log Sample App-->
+	<target name="buildCallLogSampleApp" description="builds the CallLog sample app">
+		<antcall target="compile">
+			<param name="src.dir" value="calllogSrc" />
+		</antcall>
+	</target>
+
+	<!-- target for running Call Log Sample App-->
+	<target name="runCallLogSampleApp" depends="buildCallLogSampleApp" description="runs the CallLog sample app">
+		<antcall target="run">
+			<param name="entrypoint" value="calllog.CallLog" />
+		</antcall>
+	</target>
+
+	<!-- target for building Route Sample App-->
+	<target name="buildRouteSampleApp" description="builds the Route sample app">
+		<antcall target="compile">
+			<param name="src.dir" value="routeSrc" />
+		</antcall>
+	</target>
+
+	<!-- target for running Route Sample App-->
+	<target name="runRouteSampleApp" depends="buildRouteSampleApp" description="runs the Route sample app">
+		<antcall target="run">
+			<param name="entrypoint" value="route.ui.RouteFrame" />
+		</antcall>
+	</target>
+
+	<!-- target for building TSTest Sample App-->
+	<target name="buildTsTestSampleApp" description="builds the TsTest sample app">
+		<antcall target="compile">
+			<param name="src.dir" value="tstestSrc" />
+		</antcall>
+	</target>
+
+	<target name="distTsTestWebApp" description="creates a war for TsTest sample App" depends="buildTsTestSampleApp">
+		<war destfile="${build.dir}/tstest.war" webxml="tstestWeb/WEB-INF/web.xml">
+			<fileset dir="tstestWeb">
+				<include name="*.jsp"/>
+			</fileset>
+			<lib dir="../lib">
+				<include name="${jtapi.client.jar}"/>
+				<include name="${log4j.jar}"/>
+			</lib>
+			<classes dir="${build.dir}">
+				<include name="tstest/**/*.class" />
+			</classes>
+		</war>
+	</target>
+	
+	<!-- target for running TSTest Sample App-->
+	<target name="runTsTestSampleApp" depends="buildTsTestSampleApp" description="runs the TsTest sample app">
+		<antcall target="run">
+			<param name="entrypoint" value="tstest.ui.TSTestFrame" />
+		</antcall>
+	</target>
+	
+	<!-- target for building Click2Call Sample App-->
+		<target name="buildClick2CallSampleApp" description="builds the Click2Call sample app">
+			<antcall target="compile">
+				<param name="src.dir" value="click2callSrc" />
+			</antcall>
+		</target>
+
+		<!-- target for running Click2Call Sample Apps-->
+		<target name="runClick2CallSampleApp" depends="buildClick2CallSampleApp" description="runs the Click2Call sample app">
+			<antcall target="run">
+				<param name="entrypoint" value="click2call.Click2Call" />
+			</antcall>
+		</target>
+
+	<target name="help" description="Prints information regards the targets of this build file">
+		<loadfile property="help-file"
+			      srcFile="bin/help.txt"
+			      encoding="ISO-8859-1"/>
+			      <echo message="${help-file}"/>
+	</target>
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<project name="tools" basedir=".." default="runJtapiExerciser">
+
+	<property name="jtapi.client.jar" value="ecsjtapia.jar" />
+	<property name="jtapi.exerciser.jar" value="jtapiex.jar" />
+	<property name="log4j.jar" value="log4j-1.2.12.jar" />
+
+	<path id="jtapiexerciser.run.classpath">
+		<pathelement location="../conf" />
+		<pathelement location="../resources" />
+		<fileset dir="../lib">
+			<include name="${jtapi.client.jar}" />
+			<include name="${log4j.jar}" />
+		</fileset>
+		<fileset dir="jtapiex">
+			<include name="${jtapi.exerciser.jar}" />
+		</fileset>
+	</path>
+
+	<!-- target for running jtapi exericser -->
+	<target name="runJtapiExerciser" description="starts jtapi exerciser">
+		<java classpathref="jtapiexerciser.run.classpath" classname="jtapiex.Jtapiex" fork="true" spawn="true">
+		</java>
+	</target>
+
+</project>

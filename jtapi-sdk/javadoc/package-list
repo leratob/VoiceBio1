@@ -1,0 +1,17 @@
+
+com.avaya.jtapi.tsapi
+com.avaya.jtapi.tsapi.adapters
+javax.telephony
+javax.telephony.callcenter
+javax.telephony.callcenter.capabilities
+javax.telephony.callcenter.events
+javax.telephony.callcontrol
+javax.telephony.callcontrol.capabilities
+javax.telephony.callcontrol.events
+javax.telephony.capabilities
+javax.telephony.events
+javax.telephony.media
+javax.telephony.media.events
+javax.telephony.privatedata
+javax.telephony.privatedata.capabilities
+javax.telephony.privatedata.events

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="apps/acdSrc"/>
+	<classpathentry kind="src" path="apps/click2callSrc"/>
+	<classpathentry kind="src" path="apps/tstestSrc"/>
+	<classpathentry kind="src" path="apps/calllogSrc"/>
+	<classpathentry kind="src" path="apps/routeSrc"/>
+	<classpathentry kind="src" path="apps/voicebioadapter"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/ecsjtapia.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.12.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api-2.5-6.1.1.jar"/>
+	<classpathentry kind="lib" path="tools/jtapiex/jtapiex.jar"/>
+	<classpathentry kind="src" path="conf"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="output" path="apps/tstestWeb/WEB-INF/classes"/>
+</classpath>
